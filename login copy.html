@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<title>Login In</title>
+</head>
+<body>
+
+<div data-role="page">
+<div data-role="header">
+    <a href="../mainpage/mainpage.html" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
+    <h1>Log In</h1>
+    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">Search</a>
+  </div>
+  
+   <div data-role="main" class="ui-content">
+    <div> <h2></h2> </div>
+
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+            $("#login").click(function () 
+			var data = JSON.stringify({
+		username: $("#loginusername").val(),
+		password: $("#loginpassword").val()
+			
+			});
+                $.ajax({
+                    type: "GET",
+                    url: "login-api.php",
+                    data: data,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d == true) {
+                            alert("You will now be redirected.");
+                            window.location = "http://www.aspsnippets.com/";
+                        }
+                    });
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+        });
+    </script>
+</head> 
+<body>
+<form id="login-form">
+<input type="text" name="username"	id="loginusername" placeholder="Username" required><br>
+<input type="password" name="password" id="loginpassword" placeholder="Password" required><br>
+<center><a id="register-form-header"><button>Submit</button></a></center><br><br>
+
+<center><a href="../register/register.html"><input type="submit" data-inline="true" value="Center New Account"></center></a>
+
+</form>
+</body>
+</html>
